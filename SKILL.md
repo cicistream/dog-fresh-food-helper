@@ -1,11 +1,11 @@
 ---
 name: dog-fresh-food-helper
-description: Help create or confirm a basic dog profile, estimate daily energy intake from NRC-style adult maintenance logic, distinguish 10% add-ons from meal replacement or full homemade feeding, and plan occasional cooked fresh-food add-ons with conservative safety boundaries. Use for profile intake, conversational confirmation, ingredient grouping, rough structure checks, and owner-facing safety notes; do not use as a veterinary diagnosis tool or complete diet formulation tool.
+description: Help create or confirm a basic dog profile, estimate daily energy intake from NRC-style adult maintenance logic, distinguish 10% add-ons from meal replacement or full homemade feeding, and produce cautious cooked fresh-food results with a UI-style recipe card that includes a pie or donut chart. Use for profile intake, conversational confirmation, ingredient grouping, rough structure checks, visual recipe summaries, and owner-facing safety notes; do not use as a veterinary diagnosis tool or complete diet formulation tool.
 ---
 
 # Dog Fresh Food Helper
 
-Use this skill when the user wants help turning a dog profile and fresh-food idea into a cautious, readable structure: basic dog context, NRC-style daily energy estimate, ingredient groups, visible risks, preparation reminders, and owner-facing caveats.
+Use this skill when the user wants help turning a dog profile and fresh-food idea into a cautious, readable structure: basic dog context, NRC-style daily energy estimate, ingredient groups, visible risks, preparation reminders, a UI-style recipe card, and owner-facing caveats.
 
 ## Core Boundary
 
@@ -35,6 +35,7 @@ Use this order:
 5. **User confirmation**: Ask the user to confirm the activity level, body condition, current stable intake if known, and intended use path: occasional add-on, 10% fresh-food add-on, partial transition, or long-term homemade feeding.
 6. **Path gate**: Before food planning, classify the request as 10% add-on, single-meal replacement, partial replacement above 10%, transition plan, or long-term homemade feeding.
 7. **Food planning**: Only after the profile, daily energy reference, and path are confirmed, review ingredients or draft a fresh-food structure.
+8. **Visual summary**: When a recipe or ingredient plan is generated, include a UI-style recipe card specification with a pie or donut chart, unless the user asks for text only.
 
 Ask only for details needed to assess broad suitability and risk:
 
@@ -74,7 +75,8 @@ When asked to review or draft a fresh-food helper result, structure the answer a
 7. **需要注意**: toxic foods, seasoning, fat level, new-food tolerance, choking/texture, storage, or missing calcium/completeness caveats.
 8. **数据来源提示**: one short sentence describing whether values come from NRC-style energy logic, public food composition data, package labels, or user-provided numbers.
 9. **风险提醒**: one short caveat whenever the answer includes calculation or a concrete plan.
-10. **下一步确认**: one concise question that moves the user forward, such as confirming planned calories, meal frequency, whether this is an occasional add-on, whether they want a nutrient analysis, or whether they want to record today's ingredients.
+10. **UI 卡片内容**: for completed recipe or ingredient-plan outputs, provide a visual recipe-card spec with a pie or donut chart, ingredient list, supplement list if any, data source note, and risk reminder. Do not include this if the result is blocked because nutrient analysis is required but unavailable.
+11. **下一步确认**: one concise question that moves the user forward, such as confirming planned calories, meal frequency, whether this is an occasional add-on, whether they want a nutrient analysis, whether they want a shareable card, or whether they want to record today's ingredients.
 
 ## Important Rules
 
@@ -101,3 +103,5 @@ Read [references/initial-profile-prompt.md](references/initial-profile-prompt.md
 Read [references/nrc-energy-estimate.md](references/nrc-energy-estimate.md) when the task involves calculating or explaining daily intake, planned calories, MER, 10% add-on budget, or meal allocation.
 
 Read [references/nutrient-analysis-gate.md](references/nutrient-analysis-gate.md) when the user asks for single-meal replacement, partial replacement above 10%, all-fresh-food meals, transition plans, long-term homemade feeding, or whether a combination of ingredients is nutritionally adequate.
+
+Read [references/recipe-ui-card.md](references/recipe-ui-card.md) when generating a final recipe, ingredient plan, visual summary, share card, image prompt, or UI-like output for a fresh-food result.

@@ -15,6 +15,7 @@ This skill is designed for “less guessing”, not for replacing a veterinarian
   - transition plans;
   - long-term homemade feeding.
 - Group ingredients into practical roles: main protein, vegetables, small additions, and separate supplements.
+- Produce a UI-style recipe card specification with a pie or donut chart for completed recipe results.
 - Add concise data-source notes and risk reminders whenever calculations or concrete food plans appear.
 - Block calorie-only “full meal” answers when nutrient-level analysis is required.
 
@@ -97,7 +98,8 @@ The skill should first clarify whether this is a 10% add-on, a one-off meal repl
     ├── fresh-food-boundaries.md
     ├── initial-profile-prompt.md
     ├── nrc-energy-estimate.md
-    └── nutrient-analysis-gate.md
+    ├── nutrient-analysis-gate.md
+    └── recipe-ui-card.md
 ```
 
 ## References Inside The Skill
@@ -106,6 +108,7 @@ The skill should first clarify whether this is a 10% add-on, a one-off meal repl
 - `references/nrc-energy-estimate.md`: adult maintenance energy estimate rules and risk wording.
 - `references/fresh-food-boundaries.md`: wording and safety boundaries for fresh-food helper responses.
 - `references/nutrient-analysis-gate.md`: rules for meal replacement, above-10% fresh food, and nutrient-analysis gating.
+- `references/recipe-ui-card.md`: UI-style recipe card structure, color direction, and pie/donut chart rules.
 
 ## Disclaimer
 
