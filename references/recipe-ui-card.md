@@ -69,16 +69,39 @@ Do not call the chart an NRC ratio, AAFCO ratio, balanced ratio, or complete nut
 
 ## Color Direction
 
-Use a calm, natural palette:
+Use a calm, natural palette with clearly separated colors. Do not use multiple tints of the same hue for the chart.
 
-- deep green for main protein;
-- sage green for vegetables;
-- warm ochre for larger vegetable or starch components;
-- muted coral for small additions;
-- soft blue-gray or olive for trace additions;
-- off-white card background.
+Default chart palette:
 
-Keep text dark and readable. Avoid loud neon colors, medical-dashboard styling, or overly decorative elements.
+| Role | Color | Hex |
+| --- | --- | --- |
+| Main protein | Deep green | `#245640` |
+| Egg / organ / small animal additions | Muted coral | `#C96F5B` |
+| Green vegetables | Sage green | `#7DA58D` |
+| Orange/yellow vegetables or starch | Warm ochre | `#D39A4A` |
+| Fruit or soft extras | Dusty rose | `#B7796F` |
+| Supplements | Blue gray | `#8795AD` |
+| Other small items | Olive gray | `#6E665C` |
+| Extra category if needed | Pale olive | `#A8B47A` |
+
+Card colors:
+
+- page background: `#F7F4EE`;
+- main card background: `#FFFFFF`;
+- ingredient-share panel: `#EEF6F0`;
+- divider: `#E7E0D6`;
+- primary text: `#202421`;
+- secondary text: `#7A756D`;
+- emphasis text: `#245640`.
+
+Keep text dark and readable. Avoid loud neon colors, medical-dashboard styling, default chart blues, rainbow palettes, and low-contrast same-hue gradients.
+
+For pie or donut charts:
+
+- each adjacent slice should use visibly different hues, not just light/dark versions of one color;
+- never use all-blue, all-green, or monochrome palettes;
+- if two adjacent colors look too close, switch one to ochre, coral, blue-gray, or olive;
+- make the legend dots use the exact same colors as the chart slices.
 
 ## Output As Text Spec
 

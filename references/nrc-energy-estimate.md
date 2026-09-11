@@ -118,13 +118,33 @@ For any calculation or plan, include a compact reminder:
 风险提醒：这只是基于当前信息的自用参考，不能替代兽医或兽医营养师建议；如果狗狗有疾病、处方粮、过敏、肠胃异常或体重管理需求，请先咨询专业人士。
 ```
 
-## 10% Add-On Budget
+## 10% Fresh-Food Budget
 
-If the user chooses the 10% fresh-food add-on path, calculate the optional add-on budget from planned daily calories:
+If the user chooses the 10% fresh-food path, calculate the optional fresh-food budget from planned daily calories:
 
 ```text
-fresh-food add-on budget = planned daily kcal × 10%
+fresh-food budget = planned daily kcal × 10%
 ```
+
+Before giving final amounts, ask how the user wants to use this budget:
+
+1. **Add-on mode**: keep the current main-food portion unchanged and add fresh food on top. Use only when the user explicitly chooses this or says it is an occasional topper.
+2. **Replacement mode**: replace an equivalent amount of commercial main-food calories with fresh food. This is often the better default for routine daily use because total daily calories stay closer to the original plan.
+
+Do not write “主食不变” or “加上去” as the default. If the user has not chosen, ask:
+
+```text
+这 10% 你想作为额外加餐，还是从原本主食里替换掉等热量的一小部分？如果是日常长期这样吃，我更建议按替换来算，避免总热量悄悄增加。
+```
+
+For replacement mode, calculate:
+
+```text
+main-food calories to subtract = fresh-food kcal
+main-food grams to subtract = fresh-food kcal ÷ main-food kcal per gram
+```
+
+If the main-food label energy density is missing, ask for it. Do not invent the deduction.
 
 State clearly:
 
@@ -132,6 +152,7 @@ State clearly:
 - Fresh food, treats, table food, and unverified homemade add-ons share this budget.
 - The user does not need to use the full 10% every day.
 - A 10% add-on is different from long-term homemade main feeding.
+- Routine replacement is different from simply adding calories on top of the current ration.
 
 ## Meal Allocation
 

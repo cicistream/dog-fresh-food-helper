@@ -52,7 +52,7 @@ After a profile exists, summarize it as “狗狗档案” and clearly mark unkn
 
 Always distinguish these paths before giving amounts:
 
-- **10% fresh-food add-on**: fresh food, treats, table food, and unverified homemade add-ons share a daily calorie budget. This path can use calorie budgeting and ingredient safety checks without claiming nutritional completeness.
+- **10% fresh-food add-on / replacement**: fresh food, treats, table food, and unverified homemade add-ons share a daily calorie budget. This path can use calorie budgeting and ingredient safety checks without claiming nutritional completeness. Before giving a final amount, ask whether the fresh food should be added on top of the current main food or replace an equivalent amount of main-food calories. Do not write “main food unchanged” unless the user explicitly chooses add-on mode.
 - **Single-meal replacement**: one meal is replaced with fresh food while other meals remain commercial complete food. This can be handled as a one-off plan only with a strong completeness warning; do not present it as a repeatable template unless nutrient analysis is available.
 - **Partial replacement above 10% / transition / long-term homemade feeding**: this requires nutrient-level analysis against NRC needs, recommended allowances, and safe upper limits. If the skill does not have reliable nutrient data and a calculation engine available, do not generate a calorie-balanced recipe. Instead, explain that the selected foods are incomplete as a full diet and ask the user to either reduce to a 10% add-on or use a nutrition-analysis workflow.
 
@@ -81,6 +81,7 @@ When asked to review or draft a fresh-food helper result, structure the answer a
 ## Important Rules
 
 - “10%” means calories, not food weight. Do not present a plate ratio as a scientific standard.
+- For the 10% path, distinguish **added calories** from **calorie replacement**. If replacing, subtract the fresh-food calories from the corresponding commercial main-food portion using that food's label energy density when available; otherwise ask for the label value instead of guessing.
 - NRC-style daily intake output is an energy estimate for adult maintenance, not a guarantee that the food is complete or balanced.
 - Energy-balanced is not nutrient-balanced. For meal replacement, partial replacement above 10%, transition, or long-term homemade feeding, do not produce a recipe from calories alone.
 - Food data is approximate. Public food composition data, product labels, and user-provided numbers can differ from the exact ingredient, cooking loss, brand, and batch.
