@@ -43,6 +43,21 @@ When explaining this to users, say:
 我这里先算的是每日能量参考，不是完整营养配方。它能帮我们少一点凭感觉，知道鲜食加餐大概占全天计划多少热量；但不能证明这一餐完整均衡。
 ```
 
+## Meal Replacement Boundary
+
+If the user wants to replace a whole meal, feed all fresh food, increase fresh food above the 10% add-on path, or repeat a homemade combination regularly, do not solve it with calories alone.
+
+Say clearly:
+
+```text
+这已经不是普通 10% 加餐逻辑，热量够不代表营养完整。需要做 NRC 营养缺口审计，才能判断钙磷、微量元素、维生素、必需脂肪酸等是否合适。
+```
+
+If nutrient analysis is not available, offer two safe next steps:
+
+- downgrade the request to a one-time 10% add-on or occasional topper;
+- collect full ingredient, supplement, cooked weight, and target-calorie data for nutrient-level analysis.
+
 ## Data and Risk Notes
 
 Whenever a response includes calculation, portion guidance, ingredient ratios, calorie budgets, or a concrete fresh-food plan, include:

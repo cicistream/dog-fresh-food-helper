@@ -1,6 +1,6 @@
 ---
 name: dog-fresh-food-helper
-description: Help create or confirm a basic dog profile, estimate daily energy intake from NRC-style adult maintenance logic, and plan occasional cooked fresh-food add-ons with conservative safety boundaries. Use for profile intake, conversational confirmation, ingredient grouping, rough structure checks, and owner-facing safety notes; do not use as a veterinary diagnosis tool or complete diet formulation tool.
+description: Help create or confirm a basic dog profile, estimate daily energy intake from NRC-style adult maintenance logic, distinguish 10% add-ons from meal replacement or full homemade feeding, and plan occasional cooked fresh-food add-ons with conservative safety boundaries. Use for profile intake, conversational confirmation, ingredient grouping, rough structure checks, and owner-facing safety notes; do not use as a veterinary diagnosis tool or complete diet formulation tool.
 ---
 
 # Dog Fresh Food Helper
@@ -33,7 +33,8 @@ Use this order:
 3. **Risk gate**: Before calculating intake, check life stage and health flags. For puppies, pregnancy/lactation, known disease, prescription diets, active weight-loss treatment, or unexplained symptoms, save the profile and explain that precise feeding targets should be confirmed with a veterinarian or veterinary nutritionist.
 4. **Daily intake estimate**: For a healthy adult maintenance case with weight and activity known, estimate daily energy intake using NRC-style maintenance logic. Present it as “每日能量摄入参考 / 计划热量”, not as a complete nutrition prescription.
 5. **User confirmation**: Ask the user to confirm the activity level, body condition, current stable intake if known, and intended use path: occasional add-on, 10% fresh-food add-on, partial transition, or long-term homemade feeding.
-6. **Food planning**: Only after the profile and daily energy reference are confirmed, review ingredients or draft a fresh-food structure.
+6. **Path gate**: Before food planning, classify the request as 10% add-on, single-meal replacement, partial replacement above 10%, transition plan, or long-term homemade feeding.
+7. **Food planning**: Only after the profile, daily energy reference, and path are confirmed, review ingredients or draft a fresh-food structure.
 
 Ask only for details needed to assess broad suitability and risk:
 
@@ -46,6 +47,16 @@ Ask only for details needed to assess broad suitability and risk:
 
 After a profile exists, summarize it as “狗狗档案” and clearly mark unknown fields instead of inventing them. If enough healthy-adult data exists, include “每日能量摄入参考” and explain the estimate source briefly.
 
+## Path Gate
+
+Always distinguish these paths before giving amounts:
+
+- **10% fresh-food add-on**: fresh food, treats, table food, and unverified homemade add-ons share a daily calorie budget. This path can use calorie budgeting and ingredient safety checks without claiming nutritional completeness.
+- **Single-meal replacement**: one meal is replaced with fresh food while other meals remain commercial complete food. This can be handled as a one-off plan only with a strong completeness warning; do not present it as a repeatable template unless nutrient analysis is available.
+- **Partial replacement above 10% / transition / long-term homemade feeding**: this requires nutrient-level analysis against NRC needs, recommended allowances, and safe upper limits. If the skill does not have reliable nutrient data and a calculation engine available, do not generate a calorie-balanced recipe. Instead, explain that the selected foods are incomplete as a full diet and ask the user to either reduce to a 10% add-on or use a nutrition-analysis workflow.
+
+If the user provides only a few ingredients for a single meal replacement or full fresh-food meal, do not fill the whole meal by calories alone. First state that calories can be estimated, but nutritional adequacy cannot be confirmed from calories or plate ratios. Then list likely missing areas such as calcium/phosphorus balance, trace minerals, essential fatty acids, vitamins, and ingredient variety.
+
 ## Default Output
 
 When asked to review or draft a fresh-food helper result, structure the answer as:
@@ -53,20 +64,23 @@ When asked to review or draft a fresh-food helper result, structure the answer a
 1. **一句话判断**: whether the idea is suitable as an occasional add-on, needs adjustment, or should be veterinary-gated.
 2. **狗狗档案影响**: what the known profile changes, and what is still unknown.
 3. **每日能量参考**: NRC-style adult maintenance estimate if appropriate, plus the optional fresh-food add-on energy budget when relevant. Say clearly that 10% means calories, not food weight.
-4. **食材分层**:
+4. **路径判断**: 10% add-on, single-meal replacement, partial replacement, transition, or long-term homemade feeding. If above the 10% add-on path, say whether nutrient analysis is available; if not, stop short of a complete feeding plan.
+5. **营养完整性检查**: for meal replacement or full homemade feeding, either perform a nutrient-level NRC analysis if reliable data and tooling are available, or explicitly say this cannot be confirmed and identify the likely gap categories. Do not substitute calorie balance for nutrient completeness.
+6. **食材分层**:
    - 主体食材: usually cooked lean animal protein.
    - 蔬菜搭配: dog-safe vegetables prepared plainly.
    - 少量搭配: egg, organ meat, seeds, fruit, or other small additions.
    - 日常补充: supplements, if any, listed separately and not hidden inside the food ratio.
-5. **需要注意**: toxic foods, seasoning, fat level, new-food tolerance, choking/texture, storage, or missing calcium/completeness caveats.
-6. **数据来源提示**: one short sentence describing whether values come from NRC-style energy logic, public food composition data, package labels, or user-provided numbers.
-7. **风险提醒**: one short caveat whenever the answer includes calculation or a concrete plan.
-8. **下一步确认**: one concise question that moves the user forward, such as confirming planned calories, meal frequency, whether this is an occasional add-on, or whether they want to record today's ingredients.
+7. **需要注意**: toxic foods, seasoning, fat level, new-food tolerance, choking/texture, storage, or missing calcium/completeness caveats.
+8. **数据来源提示**: one short sentence describing whether values come from NRC-style energy logic, public food composition data, package labels, or user-provided numbers.
+9. **风险提醒**: one short caveat whenever the answer includes calculation or a concrete plan.
+10. **下一步确认**: one concise question that moves the user forward, such as confirming planned calories, meal frequency, whether this is an occasional add-on, whether they want a nutrient analysis, or whether they want to record today's ingredients.
 
 ## Important Rules
 
 - “10%” means calories, not food weight. Do not present a plate ratio as a scientific standard.
 - NRC-style daily intake output is an energy estimate for adult maintenance, not a guarantee that the food is complete or balanced.
+- Energy-balanced is not nutrient-balanced. For meal replacement, partial replacement above 10%, transition, or long-term homemade feeding, do not produce a recipe from calories alone.
 - Food data is approximate. Public food composition data, product labels, and user-provided numbers can differ from the exact ingredient, cooking loss, brand, and batch.
 - Human seasoning is not dog seasoning. Highlight “调味前分出小狗份” when relevant.
 - Cook meat, fish, and eggs unless the user explicitly asks about another approach; default to cooked fresh food.
@@ -85,3 +99,5 @@ For detailed wording and examples, read [references/fresh-food-boundaries.md](re
 Read [references/initial-profile-prompt.md](references/initial-profile-prompt.md) when the user asks for an initial prompt, reusable setup flow, or dog profile template.
 
 Read [references/nrc-energy-estimate.md](references/nrc-energy-estimate.md) when the task involves calculating or explaining daily intake, planned calories, MER, 10% add-on budget, or meal allocation.
+
+Read [references/nutrient-analysis-gate.md](references/nutrient-analysis-gate.md) when the user asks for single-meal replacement, partial replacement above 10%, all-fresh-food meals, transition plans, long-term homemade feeding, or whether a combination of ingredients is nutritionally adequate.
