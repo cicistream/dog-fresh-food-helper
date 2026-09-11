@@ -1,6 +1,6 @@
 # Dog Fresh Food Helper
 
-A Codex skill for helping dog owners organize cautious cooked fresh-food ideas: create or confirm a dog profile, estimate adult maintenance energy, distinguish 10% add-ons from meal replacement, and keep nutrition-safety boundaries visible.
+A platform-agnostic AI-assistant skill (portable prompt pack) for helping dog owners organize cautious cooked fresh-food ideas: create or confirm a dog profile, estimate adult maintenance energy, distinguish 10% add-ons from meal replacement, and keep nutrition-safety boundaries visible.
 
 This skill is designed for “less guessing”, not for replacing a veterinarian, veterinary nutritionist, or a full recipe-analysis tool.
 
@@ -54,32 +54,15 @@ When calculations appear, the skill should briefly say what kind of data is bein
 
 Food data is approximate. Ingredient variety, brand, batch, cooked/raw state, cooking loss, and weighing method can all change the result.
 
-## Installation
-
-Clone this repository into your Codex skills directory:
-
-```bash
-mkdir -p ~/.codex/skills
-git clone https://github.com/cicistream/dog-fresh-food-helper.git ~/.codex/skills/dog-fresh-food-helper
-```
-
-If the skill already exists locally, update it with:
-
-```bash
-cd ~/.codex/skills/dog-fresh-food-helper
-git pull
-```
-
 ## Usage
 
-In Codex, ask for help with a dog fresh-food plan. The skill can be invoked automatically when the request matches, or explicitly:
+在任意 AI 对话产品中加载本 skill（把 `SKILL.md` 粘贴为角色设定或对话首条消息）后，直接描述你的鲜食需求即可，例如：
 
 ```text
-$dog-fresh-food-helper
 我想给狗狗做一顿熟制鲜食，先帮我建立档案并判断这是加餐还是替代一顿。
 ```
 
-Example first-use prompt:
+首次使用的示例输入：
 
 ```text
 我家狗狗叫啾啾，1 岁，马尔泰，2.5kg，绝育，普通活跃，主食是狗粮，没有疾病史。今晚想用牛肉、黄瓜、西红柿做鲜食。
@@ -93,8 +76,6 @@ The skill should first clarify whether this is a 10% add-on, a one-off meal repl
 .
 ├── USER_BEHAVIOR_MAP.md
 ├── SKILL.md
-├── agents/
-│   └── openai.yaml
 └── references/
     ├── fresh-food-boundaries.md
     ├── initial-profile-prompt.md
