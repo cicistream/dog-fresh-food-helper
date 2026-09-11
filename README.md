@@ -91,6 +91,7 @@ The skill should first clarify whether this is a 10% add-on, a one-off meal repl
 
 ```text
 .
+├── USER_BEHAVIOR_MAP.md
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml
@@ -104,6 +105,7 @@ The skill should first clarify whether this is a 10% add-on, a one-off meal repl
 
 ## References Inside The Skill
 
+- `USER_BEHAVIOR_MAP.md`: expected user flow, path gates, output decisions, and final UI-card flow.
 - `references/initial-profile-prompt.md`: reusable first-use flow and profile template.
 - `references/nrc-energy-estimate.md`: adult maintenance energy estimate rules and risk wording.
 - `references/fresh-food-boundaries.md`: wording and safety boundaries for fresh-food helper responses.
